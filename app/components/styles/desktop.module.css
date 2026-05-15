@@ -1,0 +1,6 @@
+.desktopController{
+    z-index: 1;
+    align-items: center;
+    display: grid;
+    position: relative;
+}

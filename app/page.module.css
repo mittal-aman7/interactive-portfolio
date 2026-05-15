@@ -1,0 +1,260 @@
+html{
+  scroll-behavior: smooth;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: transparent;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: clamp(5px, 4vw, 20px);
+  box-sizing: border-box;
+}
+
+/* =========================================
+   MAIN INTRO CARD (Dramatic 4-Step Corners)
+   ========================================= */
+.introBox {
+  position: relative;
+  width: 550px;
+  min-height: 200px;
+  padding: 40px;
+  color: #f5e9c9;
+  background: #c4a970; /* Outer Gold Frame */
+  
+  /* Outer 4-step pixel corner cuts (starts at 16px) */
+  clip-path: polygon(
+    /* Top edge */
+    16px 0, calc(100% - 16px) 0,
+    /* Top-Right corner */
+    calc(100% - 16px) 4px, calc(100% - 12px) 4px,
+    calc(100% - 12px) 8px, calc(100% - 8px) 8px,
+    calc(100% - 8px) 12px, calc(100% - 4px) 12px,
+    calc(100% - 4px) 16px, 100% 16px,
+    /* Right edge */
+    100% calc(100% - 16px),
+    /* Bottom-Right corner */
+    calc(100% - 4px) calc(100% - 16px), calc(100% - 4px) calc(100% - 12px),
+    calc(100% - 8px) calc(100% - 12px), calc(100% - 8px) calc(100% - 8px),
+    calc(100% - 12px) calc(100% - 8px), calc(100% - 12px) calc(100% - 4px),
+    calc(100% - 16px) calc(100% - 4px), calc(100% - 16px) 100%,
+    /* Bottom edge */
+    16px 100%,
+    /* Bottom-Left corner */
+    16px calc(100% - 4px), 12px calc(100% - 4px),
+    12px calc(100% - 8px), 8px calc(100% - 8px),
+    8px calc(100% - 12px), 4px calc(100% - 12px),
+    4px calc(100% - 16px), 0 calc(100% - 16px),
+    /* Left edge */
+    0 16px,
+    /* Top-Left corner */
+    4px 16px, 4px 12px,
+    8px 12px, 8px 8px,
+    12px 8px, 12px 4px,
+    16px 4px, 16px 0
+  );
+
+  filter: drop-shadow(8px 8px 0px #05071f);
+}
+
+/* Inner Navy Background */
+.introBox::before {
+  content: "";
+  position: absolute;
+  top: 4px; left: 4px; right: 4px; bottom: 4px;
+  background: #05071f;
+  
+  /* Inner 3-step nested cuts (starts at 12px to leave a perfect 4px border) */
+  clip-path: polygon(
+    /* Top edge */
+    12px 0, calc(100% - 12px) 0,
+    /* Top-Right corner */
+    calc(100% - 12px) 4px, calc(100% - 8px) 4px,
+    calc(100% - 8px) 8px, calc(100% - 4px) 8px,
+    calc(100% - 4px) 12px, 100% 12px,
+    /* Right edge */
+    100% calc(100% - 12px),
+    /* Bottom-Right corner */
+    calc(100% - 4px) calc(100% - 12px), calc(100% - 4px) calc(100% - 8px),
+    calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) calc(100% - 4px),
+    calc(100% - 12px) calc(100% - 4px), calc(100% - 12px) 100%,
+    /* Bottom edge */
+    12px 100%,
+    /* Bottom-Left corner */
+    12px calc(100% - 4px), 8px calc(100% - 4px),
+    8px calc(100% - 8px), 4px calc(100% - 8px),
+    4px calc(100% - 12px), 0 calc(100% - 12px),
+    /* Left edge */
+    0 12px,
+    /* Top-Left corner */
+    4px 12px, 4px 8px,
+    8px 8px, 8px 4px,
+    12px 4px, 12px 0
+  );
+  z-index: 0;
+}
+
+/* Ensure text and inner elements sit above the navy background layer */
+.introBox > * {
+  position: relative;
+  z-index: 1;
+}
+
+.introBox p {
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 1.5;
+  font-family: monospace; /* Enhances the retro dev aesthetic */
+}
+
+/* =========================================
+   2. AVATAR BOX (Single-step notched frame)
+   ========================================= */
+.avatarBox {
+  position: relative;
+  width: 140px;
+  height: 150px;
+  background: #c4a970; /* Gold frame base */
+  margin-bottom: 10px;
+  margin-top: 15px;
+  flex-shrink: 0;
+  
+  /* Outer single-step notch */
+  clip-path: polygon(
+    4px 0, calc(100% - 4px) 0,
+    100% 4px, 100% calc(100% - 4px),
+    calc(100% - 4px) 100%, 4px 100%,
+    0 calc(100% - 4px), 0 4px
+  );
+}
+
+.avatarBox::before {
+  content: "";
+  position: absolute;
+  inset: 4px; /* Shorthand for top/right/bottom/left: 4px */
+  background: #2b2554;
+  
+  /* Inner matching cut */
+  clip-path: polygon(
+    2px 0, calc(100% - 2px) 0,
+    100% 2px, 100% calc(100% - 2px),
+    calc(100% - 2px) 100%, 2px 100%,
+    0 calc(100% - 2px), 0 2px
+  );
+}
+
+/* Existing container and introBox rules remain unchanged */
+
+/* New Flex Container for the Header Section */
+.introHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Aligns items to the top edge */
+  gap: 2rem; /* Spacing between avatar and text */
+  position: relative;
+  z-index: 1; /* Ensures content stays above background layers */
+}
+
+/* Text Column Wrapper */
+.textContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Adjust heading margins to fit cleanly inside the flex layout */
+.textContent h1 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 2rem; /* Adjust size to fit your custom font scale */
+  color: #f5e9c9;
+}
+
+.textContent p {
+  margin: 0;
+  line-height: 1.6;
+  color: #f5e9c9;
+}
+
+.statRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.progressBar {
+  width: 200px;
+  height: 25px;
+  background: #2a2a2a;
+  border: 3px solid #000;
+  position: relative;
+  image-rendering: pixelated;
+}
+
+.expFill {
+  height: 100%;
+  background: linear-gradient(to right, #00ff88, #00cc66);
+}
+
+.hpFill {
+  height: 100%;
+  background: linear-gradient(to right, #ff4444, #cc0000);
+}
+
+.statValue {
+  width: 48px;
+  height: 25px;
+  text-align: right;
+  font-family: monospace; /* Keeps spacing consistent */
+  color: #f5e9c9;
+}
+/* Optional: Stack vertically on smaller mobile screens */
+@media (max-width: 768px) {
+  .introHeader {
+    flex-direction: column;
+    align-items: center; /* Center align items on mobile */
+    text-align: center;
+  }
+}
+
+.horizontalWindow{
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.content{
+  height: 100vh;
+  width: 100vw;
+  place-items: center;
+  display: grid;
+  flex-shrink: 0;
+}
+
+.about{
+  background: #00cc66;
+}
+
+.tech{
+  background: #c4a970;
+}
+
+.project{
+  background: #f5e9c9;
+}
+
+.contact{
+  background: #ff4444;
+}
+
+.desktopControllerRef{
+  margin-top: 20rem;
+  margin-left: 18rem;
+  position: absolute;
+  display: grid;
+  place-items: initial;
+}
